@@ -3,10 +3,6 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Nav from '..';
-import Gallery from '..';
-
-
-
 
 const categories = [
   { name: 'portraits', description: 'Portraits of people in my life' }
@@ -71,23 +67,20 @@ describe('links are visible', () => {
   });
 })
 
-
-// w
-
-
 describe('onClick events', () => {
   it('calls the click handler when clicked', () => {
-    const { getByText } = render(<Nav
+    const { getByTestId } = render(<Nav
       categories={categories}
       setCurrentCategory={mockSetCurrentCategory}
       currentCategory={mockCurrentCategory}
       contactSelected={mockContactSelected}
       setContactSelected={mockSetContactSelected}
     />);
-    fireEvent.click(getByText('About me'))
-    fireEvent.click(getByText('Contact'))
-    fireEvent.click(getByText('Portraits'))
+    fireEvent.click(getByTestId('about'))
+    // fireEvent.click(getByTestId('Contact'))
+    // fireEvent.click(getByTestId('Portraits'))
 
-    expect(mockSetContactSelected).toHaveBeenCalledTimes(3);
+    expect(getByTestId('about')).toHaveTextContent('About me');
+    
   });
 })
