@@ -1,4 +1,5 @@
 import React from 'react';
+// import PhotoList from '../PhotoList';
 
 const Modal = ({ onClose, currentPhoto }) => {
   const { name, description, category, index  } = currentPhoto;
@@ -7,7 +8,7 @@ const Modal = ({ onClose, currentPhoto }) => {
     <div className="modalBackdrop">
       <div className="modalContainer">
         <h3 className="modalTitle">{name} </h3>
-        <img src={require(`../../assets/large/${category}/${index}.jpg`)} alt="current category" />
+        <img src={require(`../../assets/large/${category}/${index}.jpg`).default} alt="current category" />
         <p>
           {description}
         </p>
