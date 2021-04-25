@@ -69,18 +69,17 @@ describe('links are visible', () => {
 
 describe('onClick events', () => {
   it('calls the click handler when clicked', () => {
-    const { getByTestId } = render(<Nav
+    const { getByText } = render(<Nav
       categories={categories}
       setCurrentCategory={mockSetCurrentCategory}
       currentCategory={mockCurrentCategory}
       contactSelected={mockContactSelected}
       setContactSelected={mockSetContactSelected}
     />);
-    fireEvent.click(getByTestId('about'))
-    // fireEvent.click(getByTestId('Contact'))
-    // fireEvent.click(getByTestId('Portraits'))
+    fireEvent.click(getByText('About me'))
+    fireEvent.click(getByText('Contact'))
+    fireEvent.click(getByText('Portraits'))
 
-    expect(getByTestId('about')).toHaveTextContent('About me');
-    
+    expect(mockSetContactSelected).toHaveBeenCalledTimes(3);
   });
 })
